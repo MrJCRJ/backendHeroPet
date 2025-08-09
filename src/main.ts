@@ -10,6 +10,12 @@ async function bootstrap() {
     new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
   );
 
+  app.enableCors({
+    origin: 'http://localhost:5173', // Coloque a URL do seu frontend aqui
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true, // se precisar enviar cookies
+  });
+
   const config = new DocumentBuilder()
     .setTitle('API Clientes')
     .setDescription('API para gerenciamento de clientes')
