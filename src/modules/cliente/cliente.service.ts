@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { PrismaService } from '../../common/prisma/prisma.service';
 
 @Injectable()
@@ -68,7 +72,7 @@ export class ClienteService {
       where: { id },
     });
     if (!clienteExistente) {
-      throw new Error('Cliente não encontrado');
+      throw new NotFoundException('Cliente não encontrado');
     }
 
     if (data.cpf_cnpj) {
@@ -76,7 +80,7 @@ export class ClienteService {
         where: { cpf_cnpj: data.cpf_cnpj },
       });
       if (cpfCnpjExistente && cpfCnpjExistente.id !== id) {
-        throw new Error('CPF/CNPJ já cadastrado');
+        throw new BadRequestException('CPF/CNPJ já cadastrado');
       }
     }
 
@@ -85,7 +89,7 @@ export class ClienteService {
         where: { email: data.email },
       });
       if (emailExistente && emailExistente.id !== id) {
-        throw new Error('Email já cadastrado');
+        throw new BadRequestException('Email já cadastrado');
       }
     }
 
