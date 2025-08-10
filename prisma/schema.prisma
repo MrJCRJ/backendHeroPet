@@ -17,7 +17,7 @@ model Cliente {
   id        String   @id @default(uuid())
   cpf_cnpj String   @unique
   nome      String
-  email     String   @unique
+  email     String?   @unique
   telefone  String?
   cep       String?
   numero    String?

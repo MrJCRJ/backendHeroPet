@@ -58,6 +58,7 @@ export class ClienteController {
   @ApiResponse({ status: 404, description: 'Cliente não encontrado.' })
   @Patch(':id')
   async update(@Param('id') id: string, @Body() data: UpdateClienteDto) {
+    console.log('Dados recebidos para update:', data);
     try {
       return await this.clienteService.update(id, data);
     } catch (error) {

@@ -18,7 +18,7 @@ export class CreateClienteDto {
   @ApiProperty({
     example: 'joao@exemplo.com',
     description: 'Email do cliente',
-    required: false,
+    required: true,
   })
   @IsEmail()
   email: string;
