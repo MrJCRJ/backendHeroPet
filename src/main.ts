@@ -35,7 +35,7 @@ async function bootstrap() {
   );
 
   app.enableCors({
-    origin: 'http://localhost:5173', // Coloque a URL do seu frontend aqui
+    origin: process.env.ORIGEN_URL, // Coloque a URL do seu frontend aqui
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true, // se precisar enviar cookies
   });
